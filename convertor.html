@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilities - Unit convertor (Lenght)</title>
+    <link rel="icon" href="convertor.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#F8EFBA] flex items-center justify-center h-screen w-scree flex-wrap">
+    <div class="container flex flex-wrap flex-col items-center justify-between w-screen">
+        <header class="flex items-center justify-center flex-col flex-wrap">
+            <input type="number" placeholder="Value" id="input" class="bg-transparent text-center h-14 w-80 border-b-2 text-3xl border-[#111111]">
+
+        <select id="inputType" class="bg-transparent border-2 w-52 h-10 text-2xl mt-5 border-[#111111]">
+            <option value="kilometer">Kilometer</option>
+            <option value="meter">Meter</option>
+            <option value="Centimeter">Centimeter</option>
+            <option value="feet">Feet</option>
+            <option value="inch">Inch</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+        </select>
+        </header>
+
+        <div class="bg-[#111111] text-white w-32 h-10 flex items-center justify-center rounded mt-4 max-sm:w-28"><h1 class="text-3xl max-sm:text-2xl">=</h1></div>
+
+        <footer class="flex items-center justify-center flex-col flex-wrap">
+            <input type="number" placeholder="Answer" id="result" class="bg-transparent text-center h-14 w-80 text-3xl cursor-default border-b-2 border-[#111111]" readonly>
+
+        <select id="resultType" class="bg-transparent border-2 h-10 w-52 text-2xl mt-5 border-[#111111]">
+            <option value="Centimeter">Centimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="feet">Feet</option>
+            <option value="inch">Inch</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+        </select>
+        </footer>
+    </div>
+
+<!-- JAVASCRIPT -->
+<script>
+        let input = document.getElementById('input');
+let result = document.getElementById('result');
+let inputType = document.getElementById('inputType');
+let resultType = document.getElementById('resultType');
+let option_from,option_to;
+
+// addEventlistener
+input.addEventListener("keyup",myResult);
+inputType.addEventListener("change",myResult);
+resultType.addEventListener("change",myResult);
+
+// taking initial value
+option_from = inputType.value;
+option_to   = resultType.value;
+
+function myResult(){
+
+// when we change the input and output type vale we need to updata the 
+// option_from and option_to
+
+option_from = inputType.value;
+option_to = resultType.value;
+
+// METER
+	if(option_from === "meter" && option_to==="kilometer"){
+		//meter to kilometer
+		result.value = Number(input.value) / 1000;
+	}else if(option_from === "meter" && option_to==="Centimeter"){
+		//meter to Centimeter
+		result.value = Number(input.value) * 100;
+	}else if(option_from === "meter" && option_to==="feet"){
+		//meter to feet
+		result.value = Number(input.value) * 3.281;
+	}else if(option_from === "meter" && option_to==="inch"){
+		//meter to inch
+		result.value = Number(input.value) * 39.37;
+	}else if(option_from === "meter" && option_to==="yard"){
+		//meter to yard
+		result.value = Number(input.value) * 1.094;
+	}else if(option_from === "meter" && option_to==="mile"){
+		//meter to mile
+		result.value = parseFloat(Number(input.value) / 1609).toFixed(8); 
+	}else if(option_from === "meter" && option_to==="meter"){
+		//meter to meter
+		result.value = input.value
+	}
+
+// KILOMETER
+	if(option_from === "kilometer" && option_to==="meter"){
+		//kilometer to meter
+		result.value = Number(input.value) * 1000;
+	}else if(option_from === "kilometer" && option_to==="Centimeter"){
+		//kilometer to Centimeter
+		result.value = Number(input.value) * 100000;
+	}else if(option_from === "kilometer" && option_to==="feet"){
+		//kilometer to feet
+		result.value = Number(input.value) * 3281;
+	}else if(option_from === "kilometer" && option_to==="inch"){
+		//kilometer to inch
+		result.value = Number(input.value) * 39370;
+	}else if(option_from === "kilometer" && option_to==="yard"){
+		//kilometer to yard
+		result.value = Number(input.value) * 1094;
+	}else if(option_from === "kilometer" && option_to==="mile"){
+		//kilometer to mile
+		result.value = parseFloat(Number(input.value) / 1.609).toFixed(8); 
+	}else if(option_from === "kilometer" && option_to==="kilometer"){
+		//kilometer to kilometer
+		result.value = input.value
+	}
+
+// CENTIMETER
+	if(option_from === "Centimeter" && option_to==="kilometer"){
+		//Centimeter to kilometer
+		result.value = Number(input.value) * 0.00001;
+	}else if(option_from === "Centimeter" && option_to==="meter"){
+		//Centimeter to meter
+		result.value = Number(input.value) * 0.01;
+	}else if(option_from === "Centimeter" && option_to==="feet"){
+		//Centimeter to feet
+		result.value = Number(input.value) / 30.48;
+	}else if(option_from === "Centimeter" && option_to==="inch"){
+		//Centimeter to inch
+		result.value = Number(input.value) / 2.54;
+	}else if(option_from === "Centimeter" && option_to==="yard"){
+		//Centimeter to yard
+		result.value = Number(input.value) / 91.44;
+	}else if(option_from === "Centimeter" && option_to==="mile"){
+		//Centimeter to mile
+    result.value = parseFloat(Number(input.value) / 160900).toFixed(10); 
+	}else if(option_from === "Centimeter" && option_to==="Centimeter"){
+		//Centimeter to Centimeter
+		result.value = input.value
+	}
+
+// FEET
+	if(option_from === "feet" && option_to==="kilometer"){
+		//feet to kilometer
+		result.value = Number(input.value) / 3281;
+	}else if(option_from === "feet" && option_to==="meter"){
+		//feet to meter
+		result.value = Number(input.value) / 3.281;
+	}else if(option_from === "feet" && option_to==="Centimeter"){
+		//feet to centimeter
+		result.value = Number(input.value) * 30.48;
+	}else if(option_from === "feet" && option_to==="inch"){
+		//feet to inch
+		result.value = Number(input.value) * 12;
+	}else if(option_from === "feet" && option_to==="yard"){
+		//feet to yard
+		result.value = Number(input.value) / 3;
+	}else if(option_from === "feet" && option_to==="mile"){
+		//feet to mile
+    result.value = parseFloat(Number(input.value) / 5280).toFixed(10); 
+	}else if(option_from === "feet" && option_to==="feet"){
+		//feet to feet
+		result.value = input.value
+	}
+
+// INCH
+    if(option_from === "inch" && option_to==="kilometer"){
+         //inch to kilometer
+        result.value = Number(input.value) / 39370;
+    }else if(option_from === "inch" && option_to==="meter"){
+        //inch to meter
+        result.value = Number(input.value) / 39.37;
+    }else if(option_from === "inch" && option_to==="Centimeter"){
+        //inch to centimeter
+        result.value = Number(input.value) * 2.54;
+    }else if(option_from === "inch" && option_to==="feet"){
+        //inch to feet
+        result.value = Number(input.value) / 12;
+    }else if(option_from === "inch" && option_to==="yard"){
+        //inch to yard
+        result.value = Number(input.value) / 36;
+    }else if(option_from === "inch" && option_to==="mile"){
+        //inch to mile
+        result.value = parseFloat(Number(input.value) / 63360).toFixed(8); 
+    }else if(option_from === "inch" && option_to==="inch"){
+        //inch to inch
+        result.value = input.value
+    }
+
+// YARD
+    if(option_from === "yard" && option_to==="kilometer"){
+         //yard to kilometer
+         result.value = Number(input.value) / 1094;
+    }else if(option_from === "yard" && option_to==="meter"){
+        //yard to meter
+        result.value = Number(input.value) / 1.094;
+    }else if(option_from === "yard" && option_to==="Centimeter"){
+        //yard to centimeter
+        result.value = Number(input.value) * 91.44;
+    }else if(option_from === "yard" && option_to==="feet"){
+        //yard to feet
+        result.value = Number(input.value) * 3;
+    }else if(option_from === "yard" && option_to==="inch"){
+        //yard to inch
+        result.value = Number(input.value) * 36;
+    }else if(option_from === "yard" && option_to==="mile"){
+        //yard to mile
+        result.value = parseFloat(Number(input.value) / 1760).toFixed(8); 
+    }else if(option_from === "yard" && option_to==="yard"){
+        //yard to yard
+        result.value = input.value
+    }
+
+    // YARD
+    if(option_from === "yard" && option_to==="kilometer"){
+         //yard to kilometer
+         result.value = Number(input.value) / 1094;
+    }else if(option_from === "yard" && option_to==="meter"){
+        //yard to meter
+        result.value = Number(input.value) / 1.094;
+    }else if(option_from === "yard" && option_to==="Centimeter"){
+        //yard to centimeter
+        result.value = Number(input.value) * 91.44;
+    }else if(option_from === "yard" && option_to==="feet"){
+        //yard to feet
+        result.value = Number(input.value) * 3;
+    }else if(option_from === "yard" && option_to==="inch"){
+        //yard to inch
+        result.value = Number(input.value) * 36;
+    }else if(option_from === "yard" && option_to==="mile"){
+        //yard to mile
+        result.value = parseFloat(Number(input.value) / 1760).toFixed(8); 
+    }else if(option_from === "yard" && option_to==="yard"){
+        //yard to yard
+        result.value = input.value
+    }
+
+// MILE
+    if(option_from === "mile" && option_to==="kilometer"){
+        //mile to kilometer
+        result.value = Number(input.value) * 1.609;
+    }else if(option_from === "mile" && option_to==="meter"){
+        //mile to meter
+        result.value = Number(input.value) * 1609;
+    }else if(option_from === "mile" && option_to==="Centimeter"){
+        //mile to centimeter
+        result.value = Number(input.value) * 160900;
+    }else if(option_from === "mile" && option_to==="feet"){
+        //mile to feet
+        result.value = Number(input.value) * 5280;
+    }else if(option_from === "mile" && option_to==="inch"){
+        //mile to inch
+        result.value = Number(input.value) * 63360;
+    }else if(option_from === "mile" && option_to==="yard"){
+        //mile to yard
+        result.value = Number(input.value) * 1760; 
+    }else if(option_from === "mile" && option_to==="mile"){
+        //mile to mile
+        result.value = input.value
+    }
+}
+</script>
+</body>
+</html>

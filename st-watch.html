@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilities - Stop watch</title>
+    <link rel="icon" href="stop-watch.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex justify-center items-center w-screen h-screen bg-[#7ed6df]">
+    <div class="container flex flex-col items-center justify-center">
+        <div id="stopwatch" class="flex justify-center items-center flex-wrap border-2 rounded-lg border-black w-96 h-56 text-8xl">
+            00:00:00
+        </div>
+        <div id="buttons" class="flex flex-wrap justify-center items-center w-96">
+            <button class="p-4 text-7xl" onclick="startTimer()" title="Start"><i class="fa-solid fa-circle-play"></i></button>
+            <button class="p-4  text-5xl" onclick="stopTimer()" title="Pause"><i class="fa-solid fa-circle-pause"></i></button>
+            <button class="p-4  text-5xl" onclick="resetTimer()" title="Reset"><i class="fa-solid fa-rotate-left"></i></button>
+        </div>
+    </div>
+
+<!-- JAVASCRIPT -->
+    <script>
+        const timer = document.getElementById("stopwatch");
+let hr = 0;
+let min = 0;
+let sec = 0;
+let stoptime = true;
+
+function startTimer() {
+    if (stoptime == true){
+        stoptime = false;
+        timerCycle();
+    }
+}
+function stopTimer() {
+    if (stoptime == false) {
+        stoptime = true;
+    }
+}
+function timerCycle() {
+    if (stoptime == false){
+        sec = parseInt(sec);
+        min = parseInt(min);
+        hr = parseInt(hr);
+
+        sec = sec + 1;
+
+        if (sec == 60){
+            min = min + 1;
+            sec = 0;
+        }
+        if (min == 60){
+            hr = hr + 1;
+            min = 0;
+            sec = 0;
+        }
+        if (sec < 10) {
+            sec = "0" + sec
+        }
+        if (min < 10) {
+            min = "0" + min;
+        }
+        if (hr < 10) {
+            hr = "0" + hr
+        }
+        timer.innerHTML = hr + ":" + min + ":" + sec;
+        setTimeout("timerCycle()", 1000);
+    }
+}
+function resetTimer() {
+    timer.innerHTML = "00:00:00";
+    stoptime = true;
+    hr = 0;
+    sec = 0;
+    min = 0;
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilities - Age Calculator</title>
+    <link rel="icon" href="ageCalc.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-[#fab1a0] flex items-center justify-center">
+    <section>
+        <div class="relative items-center w-full py-12 mt-20 mx-auto md:px-12 lg:px-16 max-w-7xl">
+          <div class="text-center flex items-center justify-center">
+            <div\>
+              <div class="p-6 mx-auto border-2 border-[#111111] rounded-lg">
+                <label for="birthDate" class="cursor-pointer mb-8 text-1xl font-semibold tracking-widest text-[#111111] uppercase">Date of birth</label> <br>
+                <input id="birthDate" type="date" class="bg-transparent cursor-text mx-auto text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl mt-2"> <br> <br> <br>
+
+                <label for="currentDate" class="cursor-pointer mb-8 text-1xl font-semibold tracking-widest text-[#111111] uppercase">Given date</label> <br>
+                <input id="currentDate" type="date" class="bg-transparent cursor-text mx-auto text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl mt-2">
+                <p class="mx-auto mt-12 text-2xl text-gray-600 lading-relaxed" id="output">Output</p>
+                <div class="mt-6 flex items-center justify-center">
+                  <a id="calculateBtn" href="#" class="flex items-center justify-center w-fit px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-[#111111] rounded-xl hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Calculate</a>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+<script>
+    let dob = document.getElementById("birthDate");
+    let currentDate = document.getElementById("currentDate");
+    let output = document.getElementById("output");
+
+document.getElementById("calculateBtn").addEventListener("click",()=>{
+    if(dob.value=="" || currentDate.value==""){
+        output.innerHTML = "Please select Date";
+    }else{
+        calculateAgeDifference(dob.value,currentDate.value);
+    }
+});
+
+function calculateAgeDifference(start,end){
+    console.log(start);
+    let dobYear = parseInt(start.substring(0,4), 10);
+    let dobMonth = parseInt(start.substring(5,7), 10);  
+    let dobDate = parseInt(start.substring(8,10), 10); 
+    let currYear = parseInt(end.substring(0,4), 10);
+    let currMonth = parseInt(end.substring(5,7), 10);  
+    let currDate = parseInt(end.substring(8,10), 10); 
+    
+    //year difference
+    let yearAgeDiff = currYear - dobYear;
+
+    //month difference
+    let monthAgeDiff;
+    if(currMonth >= dobMonth){
+        monthAgeDiff = currMonth - dobMonth;
+    }
+    else{
+        yearAgeDiff--;
+        monthAgeDiff = 12 + currMonth - dobMonth;
+    }
+
+    //days difference
+    let dateAgeDiff;
+    if(currDate>=dobDate){
+        dateAgeDiff = currDate - dobDate;
+    }
+    else{
+        monthAgeDiff--;
+        noOfDaysInDOB = daysInMonth(dobMonth,dobYear);
+        dateAgeDiff = noOfDaysInDOB + currDate - dobDate;
+
+        //case when monthAgeDiff goes negative
+        if(monthAgeDiff<0){
+            monthAgeDiff=11;
+            yearAgeDiff--;
+        }
+    }
+    output.innerHTML = yearAgeDiff  + " Years, " + monthAgeDiff + " Months, " + dateAgeDiff + " Days.";
+}
+
+function daysInMonth (month, year) {
+return new Date(year, month, 0).getDate();
+}
+</script>
+</body>
+</html>

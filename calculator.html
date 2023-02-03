@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="icon" href="calculator.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="bg-[#badc58] min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
+    <div class="w-full mx-auto rounded-xl bg-gray-100 shadow-xl text-gray-800 relative overflow-hidden" style="max-width:300px">
+        <div class="w-full h-36 bg-[#111111] flex items-end text-right">
+            <input readonly type="text" class="w-full py-5 px-6 text-4xl text-right bg-[#111111] text-white font-thin cursor-default " placeholder="How's my work?" id="screen">
+        </div>
+        <div class="w-full bg-gradient-to-b from-[#555555] to-[#666666]">
+            <div class="flex w-full">
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none hover:bg-opacity-80 text-white text-xl font-light bg-red-700 button" onclick='c("")'>C</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none hover:bg-opacity-20 text-white text-xl font-light bg-black opacity-50 button" onclick='backspace();'><i class="fa-solid fa-delete-left"></i></button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none hover:bg-opacity-20 text-white text-xl font-light bg-black bg-opacity-50 button" onclick='math("%")'>Rem</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-opacity-50 hover:bg-opacity-20 text-white text-2xl font-light bg-black button" onclick='math("/")'>/</button>
+                </div>
+            </div>
+            <div class="flex w-full">
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black text-white text-xl font-light button hover:bg-[#111111]" onclick='math("7")'>7</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("8")'>8</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("9")'>9</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-opacity-50 hover:bg-opacity-20 text-white text-xl font-light bg-black button" onclick='math("*")'>*</button>
+                </div>
+            </div>
+            <div class="flex w-full">
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("4")'>4</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("5")'>5</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("6")'>6</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-opacity-50 hover:bg-opacity-20 text-white text-xl font-light bg-black button" onclick='math("+")'>+</button>
+                </div>
+            </div>
+            <div class="flex w-full">
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("1")'>1</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("2")'>2</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("3")'>3</button>
+                </div>
+                <div class="w-1/4 border-r border-b border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-opacity-50 hover:bg-opacity-20 text-white text-xl font-light bg-black button" onclick='math("-")'>-</button>
+                </div>
+            </div>
+            <div class="flex w-full">
+                <div class="w-1/4 border-r border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math("0")'>0</button>
+                </div>
+                <div class="w-1/4 border-r border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black hover:bg-[#111111] text-white text-xl font-light button" onclick='math(".")'>.</button>
+                </div>
+                <div class="w-2/4 border-r border-white">
+                    <button class="w-full h-16 outline-none focus:outline-none bg-black bg-opacity-50 hover:bg-opacity-40 text-white text-xl font-light button" onclick='e()'>=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JAVASCRIPT -->
+<script src="calc.js"></script>
+</body>
+</html>
